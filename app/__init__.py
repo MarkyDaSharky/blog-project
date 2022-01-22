@@ -5,5 +5,4 @@ app = Flask(__name__)
 app.config
 
 
-
 from . import routes
