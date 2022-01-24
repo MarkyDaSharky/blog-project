@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user
-from app.forms import RegisterForm, LoginForm
+from app.forms import PostForm, RegisterForm, LoginForm
 from app.models import User
 
 
@@ -10,7 +10,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/register',methods=["GET","POST"])
+@app.route('/register', methods=["GET","POST"])
 def register():
     form=RegisterForm()
     if form.validate_on_submit():
@@ -61,4 +61,11 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+
+
+@app.route('/post')
+def post():
+    form = PostForm()
 
