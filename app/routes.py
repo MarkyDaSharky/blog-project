@@ -29,14 +29,8 @@ def register():
         User(username=username, email=email, password=password)
         flash("Thank you for registering!", "primary")
         return redirect(url_for('index'))
-<<<<<<< HEAD
-
-    return render_template('register.html', form=form)
- 
-=======
     return render_template('register.html',form=form)
   
->>>>>>> 809fe593d777d1c7912958ab0ea0e186a904ddb8
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
@@ -81,9 +75,5 @@ def add_post():
 
     return render_template('add_post.html', form=form)
 
-<<<<<<< HEAD
-    return render_template('posts.html', post = post, form=form)
-=======
 
 
->>>>>>> 809fe593d777d1c7912958ab0ea0e186a904ddb8
