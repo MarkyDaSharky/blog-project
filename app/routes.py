@@ -8,7 +8,7 @@ from app.models import User, Post
 @app.route ('/')
 def index():
     posts= Post.query.all()
-    return render_template('index.html',posts=posts)
+    return render_template('index.html', posts=posts)
 
 
 @app.route('/register', methods=["GET","POST"])
@@ -25,9 +25,7 @@ def register():
         if user_exists:
             flash(f"User with username {username} or email {email} already exists", "danger")
             return redirect(url_for('register'))
-    
-
-
+        
         User(username=username, email=email, password=password)
         flash("Thank you for registering!", "primary")
         return redirect(url_for('index'))

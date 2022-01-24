@@ -1,5 +1,4 @@
-blog_project_venv/
+venv/
 __pycache__/
-venv
+
 .env
-app.db
