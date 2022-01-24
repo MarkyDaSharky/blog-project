@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.widgets import TextArea
 
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -10,13 +11,11 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-    name=StringField('Name', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
 class PostForm(FlaskForm):
     title=StringField('Title', validators=[DataRequired()])
-    body=StringField('Body', validators=[DataRequired()])
+    body=StringField('Body', validators=[DataRequired()], widget=TextArea())
     submit = SubmitField('Go')
