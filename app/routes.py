@@ -31,7 +31,7 @@ def register():
         flash("Thank you for registering!", "primary")
         return redirect (url_for('index.html'))
     return render_template('register.html',form=form)
-  
+ 
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
