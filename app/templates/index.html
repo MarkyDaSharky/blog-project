@@ -1,15 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if current_user.is_authenticated %}
+<h1> Welcome to Club Social, {{current_user.username }}!</h1>
 
-<h1>WELCOME TO CLUB SOCIAL!</h1>
-
-<!-- Card Titles -->
-<div class="card w-75">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Button</a>
-    </div>
-  </div>
+<div class="row">
+    {%for p in posts%}
+   <div class="col-12 col-sm-6 col-md-4">
+       <div class="card" style="width: 18rem;">
+         <div class="card-body">
+           <h5 class="card-title">{{post.title}}</h5>
+           <p class="card-text">{{post.body}}</p>
+           {% if current_user.is_admin %}
+           <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-secondary">Edit</a>
+           {% endif %}
+         </div>
+         {% endfor %}  
+         </div>
+       </div>
+   </div>
+  
+{% else %}
+<h1>Welcome to Club Social! Sign up to join all the fun!!</h1>
+{% endif %}
 {% endblock %}

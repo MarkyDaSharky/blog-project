@@ -17,5 +17,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
-class Post(FlaskForm):
-    title=StringField()
+class PostForm(FlaskForm):
+    title=StringField('Title', validators=[DataRequired()])
+    body=StringField('Body', validators=[DataRequired()])
+    submit = SubmitField('Go')
