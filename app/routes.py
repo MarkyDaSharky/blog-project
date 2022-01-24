@@ -29,13 +29,17 @@ def register():
         User(username=username, email=email, password=password)
         flash("Thank you for registering!", "primary")
         return redirect(url_for('index'))
+<<<<<<< HEAD
 
     return render_template('register.html', form=form)
  
+=======
+    return render_template('register.html',form=form)
+  
+>>>>>>> 809fe593d777d1c7912958ab0ea0e186a904ddb8
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = LoginForm()
-   
     if form.validate_on_submit():
         
         username = form.username.data
@@ -60,28 +64,26 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    flash("You have logged out", "secondary")
     return redirect(url_for('index'))
 
-@app.route('/posts/<int:post_id>')
-def post_info(post_id):
-    post = Post.query.get_or_404(post_id)
-    return render_template('posts.html', post = post)
-
-@app.route('/posts/<int:post_id>', methods=["GET", "POST"])
-@login_required
-def edit_post(post_id):
-    if not current_user.is_admin:
-        flash("Sorry! You can't edit this one!!", "warning")
-        return redirect(url_for('index'))
-    post = Post.query.get_or_404(post_id)
+@app.route('/add-post', methods=['GET','POST'])
+def add_post():
     form = PostForm()
     if form.validate_on_submit():
-        title = form.title.data
+        #get blog info and turn it into an empty field
+        title = form.title.data 
         body = form.body.data
-        post.title = title
-        post.body = body
-        post.save()
-        flash(f"{post.title} has been updated", "primary")
-        return redirect(url_for('posts.html', post_id=post.id))
+        #Create a Post model and adds to db through its super init. 
+        Post(title = title, body = body)
+        #flash message if blog posted
+        flash('Blog posted!')
 
+    return render_template('add_post.html', form=form)
+
+<<<<<<< HEAD
     return render_template('posts.html', post = post, form=form)
+=======
+
+
+>>>>>>> 809fe593d777d1c7912958ab0ea0e186a904ddb8
